@@ -1,0 +1,405 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - TATA CAIM NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nitt-navy: #012951;
+            --nitt-teal: #007b6e;
+            --nitt-white: #ffffff;
+            --nitt-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nitt-light);
+        }
+
+        /* ── TOP HEADER ── */
+        .top-header {
+            background-color: var(--nitt-navy);
+            padding: 35px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-header .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header .centre-title {
+            color: var(--nitt-white);
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .top-header .institute-title {
+            color: #a8d5e2;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── NAVBAR ── */
+        .main-navbar {
+            background-color: var(--nitt-navy);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .navbar-nav {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .main-navbar .nav-link {
+            color: var(--nitt-white) !important;
+            padding: 12px 20px !important;
+            font-size: 1.15rem;
+        }
+
+        .main-navbar .nav-link:hover {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white) !important;
+        }
+
+        .main-navbar .nav-link.active {
+            background-color: var(--nitt-teal);
+        }
+
+        .main-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+            margin: 8px 16px;
+        }
+
+        /* ── PAGE BANNER ── */
+        .page-banner {
+            background-color: var(--nitt-white);
+            color: var(--nitt-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--nitt-teal);
+        }
+
+        .page-banner h1 {
+            color: var(--nitt-navy);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .page-banner p {
+            color: #555555;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* ── CONTACT CARD ── */
+        .contact-card {
+            background-color: var(--nitt-white);
+            border-radius: 10px;
+            border-top: 4px solid var(--nitt-teal);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 35px;
+            height: 100%;
+        }
+
+        .contact-card h4 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background-color: var(--nitt-teal);
+            margin-bottom: 20px;
+        }
+
+        .contact-card p {
+            color: #444;
+            line-height: 2;
+            font-size: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--nitt-teal);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            color: var(--nitt-navy);
+            text-decoration: underline;
+        }
+
+        .contact-label {
+            color: var(--nitt-navy);
+            font-weight: bold;
+        }
+
+        /* ── MAP SECTION ── */
+        .map-section {
+            background-color: var(--nitt-white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .map-header {
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            padding: 15px 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 420px;
+            border: 0;
+            display: block;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-color: var(--nitt-navy);
+            color: #c8d8e8;
+            padding: 50px 0 20px 0;
+            margin-top: 60px;
+        }
+
+        footer h5 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 8px;
+        }
+
+        footer a {
+            color: #c8d8e8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        footer a:hover {
+            color: var(--nitt-teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .top-header .centre-title {
+                font-size: 1.5rem;
+            }
+
+            .top-header .institute-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="110" style="border-radius: 50%;">
+        <div class="header-text">
+            <div class="centre-title">TATA Centre for Artificial Intelligence and Machine Learning</div>
+            <div class="institute-title">National Institute of Technology — Tiruchirappalli</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid px-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'research' %}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'people' %}">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'facilities' %}">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'publications' %}">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}" style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>Contact Us</h1>
+        <p>Get in touch with the TATA Centre for Artificial Intelligence and Machine Learning</p>
+    </div>
+
+    <!-- CONTACT CONTENT -->
+    <section class="py-5">
+        <div class="container">
+
+            <!-- SUCCESS MESSAGE -->
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                ✅ {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="row g-4">
+
+                <!-- ADDRESS CARD -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-card">
+                        <h4>Address</h4>
+                        <div class="section-divider"></div>
+                        <p>
+                            TATA Centre for Artificial Intelligence and Machine Learning<br>
+                            <span class="contact-label">Coordinator</span><br>
+                            National Institute of Technology<br>
+                            Tiruchirappalli — 620 015<br>
+                            Tamil Nadu, India.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EMAIL CARD -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-card">
+                        <h4>Email</h4>
+                        <div class="section-divider"></div>
+                        <p>
+                            <span class="contact-label">E-mail ID:</span><br>
+                            <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a><br>
+                            <a href="mailto:coeaioffice@nitt.edu">coeaioffice@nitt.edu</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CONTACT FORM -->
+                <div class="col-12">
+                    <div class="contact-card">
+                        <h4>Send us a Message</h4>
+                        <div class="section-divider"></div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label contact-label">Name</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label contact-label">Email</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label contact-label">Subject</label>
+                                    {{ form.subject }}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label contact-label">Message</label>
+                                    {{ form.message }}
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit"
+                                        style="background-color: var(--nitt-teal); color: white; border: none; padding: 12px 30px; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer;">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- MAP -->
+            <div class="map-section">
+                <div class="map-header">Location — Space Technology Incubation Center, NIT Tiruchirappalli</div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d270.6793251201972!2d78.81776636436486!3d10.758920559314811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa8d5274baf46f%3A0x157c08808b6a19f7!2sSpace%20technology%20incubation%20center!5e0!3m2!1sen!2sin!4v1780979081304!5m2!1sen!2sin"
+                    width="100%" height="450" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <h5>TATA CAIM — NIT Tiruchirappalli</h5>
+                    <p>TATA Centre for Artificial Intelligence and Machine Learning<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India.</p>
+                </div>
+                <div class="col-12 col-lg-6 mb-4">
+                    <h5>Contact</h5>
+                    <p>
+                        TATA Centre for Artificial Intelligence and Machine Learning<br>
+                        Coordinator<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India.<br><br>
+                        <strong>E-mail:</strong><br>
+                        <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a><br>
+                        <a href="mailto:coeaioffice@nitt.edu">coeaioffice@nitt.edu</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 TATA Centre for Artificial Intelligence and Machine Learning, NIT Tiruchirappalli.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

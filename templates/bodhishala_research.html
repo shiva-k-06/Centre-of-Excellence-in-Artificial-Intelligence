@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Bodhi Shala — Centre of Excellence in Artificial Intelligence, NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --nitt-navy: #012951;
+            --nitt-teal: #007b6e;
+            --nitt-white: #ffffff;
+            --nitt-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nitt-light);
+        }
+
+        .top-header {
+            background-color: var(--nitt-navy);
+            padding: 35px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-header .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header .centre-title {
+            color: var(--nitt-white);
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .top-header .institute-title {
+            color: #a8d5e2;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-navbar {
+            background-color: var(--nitt-navy);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .navbar-nav {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .main-navbar .nav-link {
+            color: var(--nitt-white) !important;
+            padding: 12px 20px !important;
+            font-size: 1.15rem;
+        }
+
+        .main-navbar .nav-link:hover,
+        .main-navbar .nav-link.active {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white) !important;
+        }
+
+        .main-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+            margin: 8px 16px;
+        }
+
+        .page-banner {
+            background-color: var(--nitt-white);
+            color: var(--nitt-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--nitt-teal);
+        }
+
+        .page-banner h1 {
+            color: var(--nitt-navy);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .page-banner p {
+            color: #555;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            color: var(--nitt-teal);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--nitt-teal);
+            margin-bottom: 25px;
+        }
+
+        .overview-text {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 900px;
+        }
+
+        .overview-section {
+            background-color: var(--nitt-white);
+            border-radius: 8px;
+            padding: 30px;
+            border-left: 4px solid var(--nitt-teal);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .thrust-card {
+            background-color: var(--nitt-white);
+            border-top: 4px solid var(--nitt-teal);
+            border-radius: 8px;
+            padding: 30px 25px;
+            text-align: center;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .thrust-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .thrust-card.active {
+            background-color: var(--nitt-navy);
+        }
+
+        .thrust-card.active h5,
+        .thrust-card.active p {
+            color: var(--nitt-white);
+        }
+
+        .thrust-card h5 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .thrust-card .icon-circle {
+            width: 55px;
+            height: 55px;
+            background-color: #e8f4f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 1.5rem;
+        }
+
+        .thrust-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .detail-panel {
+            display: none;
+            background-color: var(--nitt-white);
+            border-left: 4px solid var(--nitt-teal);
+            border-radius: 8px;
+            padding: 30px 35px;
+            margin-top: 30px;
+        }
+
+        .detail-panel.show {
+            display: block;
+        }
+
+        .detail-panel h4 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .detail-panel p {
+            color: #555;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        footer {
+            background-color: var(--nitt-navy);
+            color: #c8d8e8;
+            padding: 50px 0 20px 0;
+        }
+
+        footer h5 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .top-header .centre-title {
+                font-size: 1.5rem;
+            }
+
+            .top-header .institute-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="110" style="border-radius: 50%;">
+        <div class="header-text">
+            <div class="centre-title">Bodhi Shala — Centre of Excellence in Artificial Intelligence</div>
+            <div class="institute-title">National Institute of Technology — Tiruchirappalli</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid px-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'bodhishala_research' %}">Research</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_people' %}">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_facilities' %}">Facilities</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_publications' %}">Publications</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}"
+                            style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>Research</h1>
+        <p>Research Thrust Areas at Bodhi Shala — NIT Tiruchirappalli</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <section class="py-5">
+        <div class="container">
+
+            <h2 class="section-title">Overview</h2>
+            <div class="section-divider"></div>
+            <div class="overview-section mb-5">
+                <p class="overview-text" style="margin: 0;">
+                    Bodhi Shala serves as the foundational AI and High-Performance Computing facility of the Centre of
+                    Excellence in Artificial Intelligence, enabling research across Artificial Intelligence, Machine
+                    Learning, Deep Learning, Computer Vision, Natural Language Processing, and Data Science.
+                </p>
+            </div>
+
+            <h2 class="section-title">Thrust Areas</h2>
+            <div class="section-divider"></div>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="thrust-card"
+                        onclick="toggleDetail(this, 'AI for All', 'AI for All reflects Bodhi Shala\'s commitment to making artificial intelligence research and capability accessible across disciplines. The thrust area encompasses Artificial Intelligence, Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, and Data Science, supporting students, researchers and faculty in undertaking computationally intensive AI workloads using the lab\'s NVIDIA DGX-1 supercomputing infrastructure.')">
+                        <div class="icon-circle">
+                            <i class="fas fa-brain" style="color: #007b6e; font-size: 1.4rem;"></i>
+                        </div>
+                        <h5>AI for All</h5>
+                        <p>Click to view details</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-panel" id="detailPanel">
+                <h4 id="detailTitle"></h4>
+                <p id="detailText"></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <h5>Bodhi Shala — Centre of Excellence in Artificial Intelligence — NIT Trichy</h5>
+                    <p>National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Bodhi Shala — Centre of Excellence in Artificial Intelligence, NIT Tiruchirappalli. All rights
+                reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleDetail(card, title, text) {
+            document.querySelectorAll('.thrust-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const panel = document.getElementById('detailPanel');
+            document.getElementById('detailTitle').textContent = title;
+            document.getElementById('detailText').textContent = text;
+            panel.classList.add('show');
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+
+</html>

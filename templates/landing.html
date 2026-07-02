@@ -1,0 +1,440 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre of Excellence for Artificial Intelligence — NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --teal: #007b6e;
+            --navy: #012951;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* FIXED FULL PAGE BACKGROUND */
+        .fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url("{% static 'images/ai.png' %}");
+            background-size: 50%;
+            background-color: #050e1c;
+            background-position: right center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        .fixed-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 14, 28, 0.55);
+        }
+
+        /* HEADER */
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.35);
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .institute-name {
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        /* LAYOUT */
+        .layout {
+            position: relative;
+            display: flex;
+
+            align-items: flex-start;
+        }
+
+        /* LEFT — STICKY */
+        .left-fixed {
+            width: 42%;
+            position: sticky;
+            top: 76px;
+            height: calc(100vh - 76px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 100px;
+            padding-left: 50px;
+            padding-right: 50px;
+            z-index: 5;
+            flex-shrink: 0;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--teal);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--white);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title-ai {
+            color: #4dd0c4;
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-underline {
+            width: 50px;
+            height: 3px;
+            background-color: var(--teal);
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            font-size: 0.98rem;
+            color: #e0e8f0;
+            line-height: 1.8;
+            max-width: 400px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* RIGHT — SCROLLING GLASS CARDS */
+        .right-content {
+            width: 58%;
+            padding: 70px 50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            padding: 36px 38px;
+            margin-bottom: 26px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .box-label {
+            color: #4dd0c4;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .box-heading {
+            color: var(--white);
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .box-text {
+            color: #e0e8f0;
+            font-size: 0.96rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .box-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .box-list li {
+            color: #e0e8f0;
+            font-size: 0.94rem;
+            line-height: 1.7;
+            margin-bottom: 13px;
+            padding-left: 22px;
+            position: relative;
+            text-align: justify;
+        }
+
+        .box-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            background-color: #4dd0c4;
+            border-radius: 50%;
+        }
+
+        /* EXPLORE GRID */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .explore-card {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .explore-card .explore-card-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .explore-card .explore-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .explore-card .explore-card-placeholder {
+            width: 100%;
+            height: 160px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .explore-card .explore-card-content h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .explore-card .explore-card-content p {
+            color: #cdd8e3;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .centre-card-link {
+            background-color: var(--teal);
+            color: var(--white);
+            border: none;
+            padding: 9px 22px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .centre-card-link:hover {
+            background-color: #005a50;
+            color: var(--white);
+        }
+
+        /* FOOTER */
+        footer {
+            position: relative;
+            z-index: 5;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 18px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .top-header {
+                position: relative;
+            }
+
+            .layout {
+                flex-direction: column;
+            }
+
+            .left-fixed {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 50px 24px;
+            }
+
+            .right-content {
+                width: 100%;
+                padding: 40px 20px;
+            }
+
+            .hero-title,
+            .hero-title-ai {
+                font-size: 1.9rem;
+            }
+
+            .explore-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FIXED BACKGROUND -->
+    <div class="fixed-bg"></div>
+
+    <!-- HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="60" style="border-radius: 50%;">
+        <div class="institute-name">National Institute of Technology Tiruchirappalli</div>
+    </div>
+
+    <!-- LAYOUT -->
+    <div class="layout">
+
+        <!-- LEFT STICKY TEXT -->
+        <div class="left-fixed">
+            <div class="hero-tag">NIT Tiruchirappalli</div>
+            <div class="hero-title">Centre of Excellence in</div>
+            <div class="hero-title-ai">Artificial Intelligence</div>
+            <div class="hero-underline"></div>
+            <p class="hero-desc">
+                Advancing research, education and innovation in Artificial Intelligence
+                and Machine Learning to build intelligent solutions for real-world
+                societal challenges.
+            </p>
+        </div>
+
+        <!-- RIGHT SCROLLING GLASS CARDS -->
+        <div class="right-content">
+
+            <!-- ABOUT COE-AI -->
+            <div class="glass-box">
+                <div class="box-label">About</div>
+                <div class="box-heading">Centre of Excellence in Artificial Intelligence</div>
+                <p class="box-text">The Centre of Excellence in Artificial Intelligence (CoE-AI) at NIT Tiruchirappalli
+                    serves as the flagship platform of the institute for Artificial Intelligence research, innovation,
+                    infrastructure development, technology translation, skill enhancement, and industry collaboration.
+                    Established to foster a sustainable AI ecosystem, the Centre brings together students, researchers,
+                    faculty members, industry partners, startups, and government agencies to address real-world
+                    challenges through cutting-edge AI technologies and interdisciplinary research.</p>
+            </div>
+
+            <!-- VISION -->
+            <div class="glass-box">
+                <div class="box-heading">Vision</div>
+                <ul class="box-list">
+                    <li>To be a university globally trusted for technical excellence where learning and
+                        research integrate to sustain society and industry.</li>
+                </ul>
+            </div>
+
+            <!-- MISSION -->
+            <div class="glass-box">
+                <div class="box-heading">Mission</div>
+                <ul class="box-list">
+                    <li>To offer undergraduate, postgraduate, doctoral and modular programmes in multi-disciplinary /
+                        inter-disciplinary and emerging areas.</li>
+                    <li>To create a converging learning environment to serve a dynamically evolving society.</li>
+                    <li>To promote innovation for sustainable solutions by forging global collaborations with academia
+                        and industry in cutting-edge research.</li>
+                    <li>To be an intellectual ecosystem where human capabilities can develop holistically.</li>
+                </ul>
+            </div>
+
+            <!-- EXPLORE — two cards side by side -->
+            <div class="glass-box">
+                <div class="box-label">Explore</div>
+                <div class="explore-grid">
+
+                    <!-- TATA CAIM CARD -->
+                    <div class="explore-card">
+                        <div class="explore-card-img">
+                            <img src="{% static 'images/1.jpeg' %}" alt="TATA CAIM Lab">
+                        </div>
+                        <div class="explore-card-content">
+                            <h4>TATA Centre for AI &amp; ML</h4>
+                            <p>Advancing research and innovation in Artificial Intelligence and Machine Learning,
+                                supported by the TATA Foundation.</p>
+                            <a href="{% url 'home' %}" class="centre-card-link">Visit Website</a>
+                        </div>
+                    </div>
+
+                    <!-- NEW LAB PLACEHOLDER -->
+                    <!-- BODHI SHALA CARD -->
+                    <div class="explore-card">
+                        <div class="explore-card-placeholder">Image Coming Soon</div>
+                        <div class="explore-card-content">
+                            <h4>Bodhi Shala — Centre of Excellence in Artificial Intelligence</h4>
+                            <p>Details about Bodhi Shala will be added soon.</p>
+                            <a href="{% url 'bodhishala_home' %}" class="centre-card-link">Visit Website</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CLOSING STATEMENT -->
+            <div class="glass-box">
+                <p class="box-text">The CoE-AI expands the research and development activities of the institute. The
+                    initiative would result in generation of highly skilled manpower through internships in due course
+                    of time, with expertise in artificial intelligence.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 National Institute of Technology Tiruchirappalli. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

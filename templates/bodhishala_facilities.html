@@ -1,0 +1,469 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities - Bodhi Shala — Centre of Excellence in Artificial Intelligence, NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nitt-navy: #012951;
+            --nitt-teal: #007b6e;
+            --nitt-white: #ffffff;
+            --nitt-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nitt-light);
+        }
+
+        .top-header {
+            background-color: var(--nitt-navy);
+            padding: 35px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-header .header-text { display: flex; flex-direction: column; }
+
+        .top-header .centre-title {
+            color: var(--nitt-white);
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .top-header .institute-title {
+            color: #a8d5e2;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-navbar {
+            background-color: var(--nitt-navy);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .navbar-nav { width: 100%; justify-content: flex-start; }
+
+        .main-navbar .nav-link {
+            color: var(--nitt-white) !important;
+            padding: 12px 20px !important;
+            font-size: 1.15rem;
+        }
+
+        .main-navbar .nav-link:hover,
+        .main-navbar .nav-link.active {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white) !important;
+        }
+
+        .main-navbar .navbar-toggler {
+            border-color: rgba(255,255,255,0.5);
+            margin: 8px 16px;
+        }
+
+        .page-banner {
+            background-color: var(--nitt-white);
+            color: var(--nitt-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--nitt-teal);
+        }
+
+        .page-banner h1 { color: var(--nitt-navy); }
+
+        .page-banner p {
+            color: #555555;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .intro-section {
+            background-color: var(--nitt-white);
+            border-left: 5px solid var(--nitt-teal);
+            border-radius: 8px;
+            padding: 25px 30px;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h4 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .intro-section p {
+            color: #555;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white);
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .facility-card {
+            background-color: var(--nitt-white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .facility-icon-block {
+            background-color: var(--nitt-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            min-height: 200px;
+        }
+
+        .facility-icon-block i {
+            font-size: 5rem;
+            color: var(--nitt-teal);
+        }
+
+        .facility-content { padding: 30px; }
+
+        .facility-content h3 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .facility-content .subtitle {
+            color: var(--nitt-teal);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spec-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .spec-list li:last-child { border-bottom: none; }
+
+        .spec-list li i {
+            color: var(--nitt-teal);
+            font-size: 1rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .spec-list .spec-label {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            min-width: 130px;
+        }
+
+        .location-section {
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+
+        .location-section h4 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .location-section p {
+            color: #c8d8e8;
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .location-section i {
+            color: var(--nitt-teal);
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        footer {
+            background-color: var(--nitt-navy);
+            color: #c8d8e8;
+            padding: 50px 0 20px 0;
+        }
+
+        footer h5 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .top-header { flex-direction: column; text-align: center; padding: 20px 16px; }
+            .top-header .centre-title { font-size: 1.5rem; }
+            .top-header .institute-title { font-size: 1rem; }
+            .facility-icon-block { min-height: 140px; }
+            .facility-icon-block i { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="110" style="border-radius: 50%;">
+        <div class="header-text">
+            <div class="centre-title">Bodhi Shala — Centre of Excellence in Artificial Intelligence</div>
+            <div class="institute-title">National Institute of Technology — Tiruchirappalli</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid px-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_research' %}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_people' %}">People</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'bodhishala_facilities' %}">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_publications' %}">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bodhishala_contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}" style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>Facilities</h1>
+        <p>Bodhi Shala Laboratory — NIT Tiruchirappalli</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <section class="py-5">
+        <div class="container">
+
+            <!-- INTRO -->
+            <div class="intro-section">
+                <h4>Lab Infrastructure</h4>
+                <p>Bodhi Shala facilities at NIT Tiruchirappalli.</p>
+                <span class="status-badge">Lab under scaling — details will be updated as expansion continues</span>
+            </div>
+
+            <!-- FACILITY 1 — HPC -->
+            <div class="facility-card">
+                <div class="row g-0">
+                    <div class="col-12 col-md-3">
+                        <div class="facility-icon-block h-100">
+                            <i class="bi bi-gpu-card"></i>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <div class="facility-content">
+                            <h3>High-Performance Computing System</h3>
+                            <div class="subtitle">NVIDIA DGX-1 Server</div>
+                            <ul class="spec-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">GPU:</span> 8 × NVIDIA Tesla V100 — 32 GB HBM2 memory per GPU (Total: 256 GB)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">CPU:</span> Dual Intel Xeon Processors</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">System Memory:</span> 512 GB</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Interconnect:</span> NVLink GPU interconnect</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Storage:</span> High-speed SSD storage array</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">OS:</span> DGX OS Server (Ubuntu-based)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Purpose:</span> Large-scale AI model training, simulation, and research computing</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FACILITY 2 — WORKSTATIONS -->
+            <div class="facility-card">
+                <div class="row g-0">
+                    <div class="col-12 col-md-3">
+                        <div class="facility-icon-block h-100">
+                            <i class="bi bi-pc-display"></i>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <div class="facility-content">
+                            <h3>Workstation Cluster</h3>
+                            <div class="subtitle">6 High-Performance Workstations</div>
+                            <ul class="spec-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Count:</span> 6 workstations</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Processor:</span> Intel Core i7-9700</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">RAM:</span> 16 GB DDR4 (3200 MHz)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Storage:</span> 256 GB SSD + 2 TB HDD</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">GPU:</span> NVIDIA RTX 2080 Ti (11 GB GDDR6)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">OS:</span> Windows 10 Pro (64-bit)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Purpose:</span> Data preprocessing, model development, visualization, and inference</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FACILITY 3 — POWER BACKUP -->
+            <div class="facility-card">
+                <div class="row g-0">
+                    <div class="col-12 col-md-3">
+                        <div class="facility-icon-block h-100">
+                            <i class="bi bi-battery-charging"></i>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <div class="facility-content">
+                            <h3>Power Backup System</h3>
+                            <div class="subtitle">20 kVA Industrial Online UPS</div>
+                            <ul class="spec-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">UPS:</span> 20 kVA Industrial Online UPS</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Battery:</span> Amaron Quanta 12V 75Ah SMF-VRLA batteries</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Units:</span> 14 battery units available</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Backup:</span> Approximately 2–3 hours under full load</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><span class="spec-label">Purpose:</span> Uninterrupted power supply for DGX-1 server and workstation cluster</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOCATION -->
+            <div class="location-section">
+                <h4><i class="bi bi-geo-alt-fill"></i>Infrastructure Location</h4>
+                <p>All infrastructure is housed at Bodhi Shala — Centre of Excellence in Artificial Intelligence<br>
+                    National Institute of Technology Tiruchirappalli.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <h5>Bodhi Shala — Centre of Excellence in Artificial Intelligence — NIT Trichy</h5>
+                    <p>National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Bodhi Shala — Centre of Excellence in Artificial Intelligence, NIT Tiruchirappalli. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

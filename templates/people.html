@@ -1,0 +1,523 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - CAIM NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nitt-navy: #012951;
+            --nitt-teal: #007b6e;
+            --nitt-white: #ffffff;
+            --nitt-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nitt-light);
+        }
+
+        .top-header {
+            background-color: var(--nitt-navy);
+            padding: 35px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-header .header-text { display: flex; flex-direction: column; }
+
+        .top-header .centre-title {
+            color: var(--nitt-white);
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .top-header .institute-title {
+            color: #a8d5e2;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-navbar {
+            background-color: var(--nitt-navy);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .navbar-nav { width: 100%; justify-content: flex-start; }
+
+        .main-navbar .nav-link {
+            color: var(--nitt-white) !important;
+            padding: 12px 20px !important;
+            font-size: 1.15rem;
+        }
+
+        .main-navbar .nav-link:hover { background-color: var(--nitt-teal); color: var(--nitt-white) !important; }
+        .main-navbar .nav-link.active { background-color: var(--nitt-teal); }
+
+        .main-navbar .navbar-toggler {
+            border-color: rgba(255,255,255,0.5);
+            margin: 8px 16px;
+        }
+
+        .page-banner {
+            background-color: var(--nitt-white);
+            color: var(--nitt-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--nitt-teal);
+        }
+
+        .page-banner h1 { color: var(--nitt-navy); }
+
+        .page-banner p {
+            color: #555555;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .people-section { padding: 50px 0; }
+
+        .accordion-button {
+            background-color: var(--nitt-navy) !important;
+            color: var(--nitt-white) !important;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 18px 24px;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--nitt-teal) !important;
+            color: var(--nitt-white) !important;
+            box-shadow: none;
+        }
+
+        .accordion-button::after { filter: invert(1); }
+
+        .accordion-item {
+            border: none;
+            margin-bottom: 10px;
+            border-radius: 8px !important;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .accordion-body {
+            background-color: var(--nitt-white);
+            padding: 30px;
+        }
+
+        .person-card {
+            background-color: var(--nitt-white);
+            border: 1px solid #ddd;
+            border-top: 4px solid var(--nitt-teal);
+            border-radius: 8px;
+            padding: 24px 20px;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .person-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .avatar-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+        }
+
+        .person-card h5 {
+            color: var(--nitt-navy);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .person-card .designation {
+            color: var(--nitt-teal);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .person-card .department {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            background-color: var(--nitt-navy);
+            color: #c8d8e8;
+            padding: 50px 0 20px 0;
+        }
+
+        footer h5 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 8px;
+        }
+
+        footer a {
+            color: #c8d8e8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        footer a:hover { color: var(--nitt-teal); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .top-header { flex-direction: column; text-align: center; padding: 20px 16px; }
+            .top-header .centre-title { font-size: 1.5rem; }
+            .top-header .institute-title { font-size: 1rem; }
+            .person-card { padding: 15px 10px; }
+            .avatar-circle { width: 45px; height: 45px; font-size: 0.9rem; margin-bottom: 10px; }
+            .person-card h5 { font-size: 0.82rem; }
+            .person-card .designation { font-size: 0.75rem; }
+            .person-card .department { font-size: 0.72rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="110" style="border-radius: 50%;">
+        <div class="header-text">
+            <div class="centre-title">TATA Centre for Artificial Intelligence and Machine Learning</div>
+            <div class="institute-title">National Institute of Technology — Tiruchirappalli</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid px-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'research' %}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'people' %}">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'facilities' %}">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'publications' %}">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}" style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>People</h1>
+        <p>The team behind the TATA Centre for Artificial Intelligence and Machine Learning</p>
+    </div>
+
+    <!-- PEOPLE ACCORDION -->
+    <section class="people-section">
+        <div class="container">
+            <div class="accordion" id="peopleAccordion">
+
+                <!-- GOVERNANCE COMMITTEE -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#governance">
+                            Governance Committee
+                        </button>
+                    </h2>
+                    <div id="governance" class="accordion-collapse collapse" data-bs-parent="#peopleAccordion">
+                        <div class="accordion-body">
+                            <div class="row g-4">
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">GA</div>
+                                        <h5>Dr. G. Aghila</h5>
+                                        <div class="designation">Director</div>
+                                        <div class="department">NIT Tiruchirappalli</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">MP</div>
+                                        <h5>Dr. M. Premalatha</h5>
+                                        <div class="designation">Dean of Research &amp; Consultancy</div>
+                                        <div class="department">NIT Tiruchirappalli</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">KT</div>
+                                        <h5>Dr. K. Thirumaran</h5>
+                                        <div class="designation">Dean of Planning &amp; Development</div>
+                                        <div class="department">NIT Tiruchirappalli</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TECHNICAL EXPERT COMMITTEE -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#technical">
+                            Technical Expert Committee
+                        </button>
+                    </h2>
+                    <div id="technical" class="accordion-collapse collapse" data-bs-parent="#peopleAccordion">
+                        <div class="accordion-body">
+                            <div class="row g-4">
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RB</div>
+                                        <h5>Mr. Raja Bhowmick</h5>
+                                        <div class="designation">Representative</div>
+                                        <div class="department">TCS Foundation</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">MM</div>
+                                        <h5>Mr. M. Murali</h5>
+                                        <div class="designation">Technology Consultant</div>
+                                        <div class="department">Hexaware</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RR</div>
+                                        <h5>Mr. Raja Renganathan</h5>
+                                        <div class="designation">Alumni</div>
+                                        <div class="department">NIT Tiruchirappalli</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">LG</div>
+                                        <h5>Mr. Lakshmi Gudapakkam</h5>
+                                        <div class="designation">CEO</div>
+                                        <div class="department">Annalaise AI, USA</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADVISORY COMMITTEE -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#advisory">
+                            Advisory Committee
+                        </button>
+                    </h2>
+                    <div id="advisory" class="accordion-collapse collapse" data-bs-parent="#peopleAccordion">
+                        <div class="accordion-body">
+                            <div class="row g-4">
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">GS</div>
+                                        <h5>Dr. G. Sivakumar</h5>
+                                        <div class="designation">Professor</div>
+                                        <div class="department">IIT Mumbai</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">TG</div>
+                                        <h5>Dr. T V Geetha</h5>
+                                        <div class="designation">UGC-BSR Faculty Fellow, Retd. Professor</div>
+                                        <div class="department">Anna University, Chennai</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RP</div>
+                                        <h5>Dr. Ranjani Parthasarathi</h5>
+                                        <div class="designation">Professor, Executive Leader Alliance Ecosystems</div>
+                                        <div class="department">Dept. of IST, Anna University, Chennai</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADMINISTRATIVE COMMITTEE -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#admin">
+                            Administrative Committee
+                        </button>
+                    </h2>
+                    <div id="admin" class="accordion-collapse collapse" data-bs-parent="#peopleAccordion">
+                        <div class="accordion-body">
+                            <div class="row g-4">
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RS</div>
+                                        <h5>Dr. Rajeswari Sridhar</h5>
+                                        <div class="designation">Coordinator, Professor</div>
+                                        <div class="department">Dept. of CSE</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">MS</div>
+                                        <h5>Dr. M. Sridevi</h5>
+                                        <div class="designation">Associate Professor</div>
+                                        <div class="department">Dept. of CSE</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">AJ</div>
+                                        <h5>Dr. Ashwinth Janarthanan</h5>
+                                        <div class="designation">Assistant Professor</div>
+                                        <div class="department">Computer Applications</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DOMAIN INNOVATION HEADS -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#domainheads">
+                            Domain Innovation Heads
+                        </button>
+                    </h2>
+                    <div id="domainheads" class="accordion-collapse collapse" data-bs-parent="#peopleAccordion">
+                        <div class="accordion-body">
+                            <div class="row g-4">
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RS</div>
+                                        <h5>Dr. Rajeswari Sridhar</h5>
+                                        <div class="designation">Professor</div>
+                                        <div class="department">Dept. of CSE</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">DE</div>
+                                        <h5>Dr. D. Ezhilarasi</h5>
+                                        <div class="designation">Professor</div>
+                                        <div class="department">Dept. of ICE</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">SS</div>
+                                        <h5>Dr. S. Sangeetha</h5>
+                                        <div class="designation">Associate Professor</div>
+                                        <div class="department">Dept. of CA</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">MS</div>
+                                        <h5>Dr. M. Sridevi</h5>
+                                        <div class="designation">Associate Professor</div>
+                                        <div class="department">Dept. of CSE</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-4">
+                                    <div class="person-card">
+                                        <div class="avatar-circle">RP</div>
+                                        <h5>Dr. R. Periyasamy</h5>
+                                        <div class="designation">Assistant Professor</div>
+                                        <div class="department">Dept. of ICE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-12 col-lg-4 mb-4">
+                    <h5>CAIM — NIT Tiruchirappalli</h5>
+                    <p>Centre for Artificial Intelligence<br>and Machine Learning<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620015<br>
+                        Tamil Nadu, India</p>
+                </div>
+                <div class="col-12 col-lg-4 mb-4">
+                    <h5>Contact</h5>
+                    <p>
+                        TATA Centre for Artificial Intelligence and Machine Learning<br>
+                        Coordinator<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India.<br><br>
+                        <strong>E-mail:</strong><br>
+                        <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a><br>
+                        <a href="mailto:coeaioffice@nitt.edu">coeaioffice@nitt.edu</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 TATA Centre for Artificial Intelligence and Machine Learning, NIT Tiruchirappalli.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

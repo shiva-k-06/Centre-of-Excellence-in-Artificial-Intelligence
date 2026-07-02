@@ -1,0 +1,821 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Centre for AI and ML NIT Tiruchirappalli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nitt-navy: #012951;
+            --nitt-teal: #007b6e;
+            --nitt-white: #ffffff;
+            --nitt-light: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--nitt-light);
+        }
+
+        .top-header {
+            background-color: var(--nitt-navy);
+            padding: 35px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-header .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header .centre-title {
+            color: var(--nitt-white);
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .top-header .institute-title {
+            color: #a8d5e2;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .main-navbar {
+            background-color: var(--nitt-navy);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .navbar-nav {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .main-navbar .nav-link {
+            color: var(--nitt-white) !important;
+            padding: 12px 20px !important;
+            font-size: 1.15rem;
+        }
+
+        .main-navbar .nav-link:hover,
+        .main-navbar .nav-link.active {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white) !important;
+        }
+
+        .main-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.5);
+            margin: 8px 16px;
+        }
+
+        .page-banner {
+            background-color: var(--nitt-white);
+            color: var(--nitt-navy);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--nitt-teal);
+        }
+
+        .page-banner h1 {
+            color: var(--nitt-navy);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .page-banner p {
+            color: #555;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            color: var(--nitt-teal);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--nitt-teal);
+            margin-bottom: 25px;
+        }
+
+        .event-card {
+            background-color: var(--nitt-white);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-card-header {
+            background-color: var(--nitt-navy);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .event-card-date {
+            color: var(--nitt-white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .event-card-type {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .event-card-body {
+            padding: 20px;
+        }
+
+        .event-card-body h5 {
+            color: var(--nitt-navy);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .event-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: 0.88rem;
+            margin-bottom: 8px;
+        }
+
+        .meta-label {
+            color: var(--nitt-teal);
+            font-weight: 600;
+            font-size: 0.85rem;
+            min-width: 50px;
+        }
+
+        .event-card-divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
+        }
+
+        .event-card-desc {
+            color: #666;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .past-event-row {
+            background-color: var(--nitt-white);
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border: 1px solid #e0e0e0;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .past-event-row:hover {
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .past-date-block {
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+
+        .past-date-block .past-day {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .past-date-block .past-month {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .past-event-info {
+            flex: 1;
+        }
+
+        .past-event-title {
+            color: var(--nitt-navy);
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .past-event-venue {
+            color: #777;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .past-type-badge {
+            background-color: #e8f4f2;
+            color: var(--nitt-teal);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .btn-view-details {
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            border: none;
+            padding: 7px 14px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-view-details:hover,
+        .btn-view-details.active {
+            background-color: var(--nitt-teal);
+        }
+
+        .event-detail-panel {
+            display: none;
+            background-color: var(--nitt-white);
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            border-top: 3px solid var(--nitt-teal);
+            padding: 22px 26px;
+            margin-bottom: 12px;
+        }
+
+        .event-detail-panel.show {
+            display: block;
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .detail-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--nitt-navy);
+            margin-bottom: 5px;
+        }
+
+        .detail-meta {
+            font-size: 0.85rem;
+            color: var(--nitt-teal);
+            font-weight: 600;
+        }
+
+        .close-detail-btn {
+            background: none;
+            border: none;
+            color: var(--nitt-teal);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .close-detail-btn:hover {
+            color: var(--nitt-navy);
+        }
+
+        .detail-divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin-bottom: 16px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .stat-box {
+            background-color: var(--nitt-light);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--nitt-navy);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .detail-desc {
+            color: #555;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin: 0;
+            white-space: pre-line;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            background-color: var(--nitt-white);
+            border-radius: 8px;
+            border: 2px dashed #ddd;
+        }
+
+        footer {
+            background-color: var(--nitt-navy);
+            color: #c8d8e8;
+            padding: 50px 0 20px 0;
+        }
+
+        footer h5 {
+            color: var(--nitt-white);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--nitt-teal);
+            padding-bottom: 8px;
+        }
+
+        footer a {
+            color: #c8d8e8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        footer a:hover {
+            color: var(--nitt-teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .top-header .centre-title {
+                font-size: 1.5rem;
+            }
+
+            .top-header .institute-title {
+                font-size: 1rem;
+            }
+
+            .past-event-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .past-type-badge {
+                margin-left: 0;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* FAQ */
+        .faq-container {
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 8px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background-color: var(--nitt-light);
+            border: 1px solid #e0e0e0;
+            color: var(--nitt-navy);
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .faq-question.active {
+            background-color: var(--nitt-navy);
+            color: var(--nitt-white);
+            border-color: var(--nitt-navy);
+            border-radius: 6px 6px 0 0;
+        }
+
+        .faq-arrow {
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-answer {
+            display: none;
+            background-color: var(--nitt-white);
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-left: 4px solid var(--nitt-teal);
+            padding: 16px 20px;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .faq-answer p {
+            color: #555;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .faq-answer a {
+            color: var(--nitt-teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+        <img src="{% static 'images/emblem.png' %}" alt="NIT Trichy Logo" width="110" style="border-radius: 50%;">
+        <div class="header-text">
+            <div class="centre-title">TATA Centre for Artificial Intelligence and Machine Learning</div>
+            <div class="institute-title">National Institute of Technology — Tiruchirappalli</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid px-4">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'research' %}">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'people' %}">People</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'facilities' %}">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'publications' %}">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'events' %}">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}" style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>Events</h1>
+        <p>Workshops, Seminars and Guest Lectures at TATA Centre for AI and ML — NIT Tiruchirappalli</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <section class="py-5">
+        <div class="container">
+
+            <!-- UPCOMING EVENTS -->
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="section-divider"></div>
+
+            {% if upcoming %}
+            <div class="row g-4 mb-5">
+                {% for event in upcoming %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <span class="event-card-date">{{ event.date|date:"M d, Y" }}</span>
+                            <span class="event-card-type">{{ event.get_event_type_display }}</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h5>{{ event.title }}</h5>
+                            <div class="event-card-meta">
+                                <span class="meta-label">Venue:</span> {{ event.venue }}
+                            </div>
+                            <div class="event-card-meta">
+                                <span class="meta-label">Time:</span> {{ event.time|time:"g:i A" }}
+                            </div>
+                            {% if event.description %}
+                            <hr class="event-card-divider">
+                            <p class="event-card-desc">{{ event.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state mb-5">
+                <p style="font-size: 1.1rem; margin: 0;">No upcoming events at the moment. Check back soon!</p>
+            </div>
+            {% endif %}
+
+            <!-- PAST EVENTS -->
+            <h2 class="section-title">Past Events</h2>
+            <div class="section-divider"></div>
+
+            {% if past %}
+            {% for event in past %}
+            <div class="past-event-row">
+                <div class="past-date-block">
+                    <div class="past-day">{{ event.date|date:"d" }}</div>
+                    <div class="past-month">{{ event.date|date:"M Y" }}</div>
+                </div>
+                <div class="past-event-info">
+                    <p class="past-event-title">{{ event.title }}</p>
+                    <p class="past-event-venue">{{ event.venue }}</p>
+                </div>
+                <span class="past-type-badge">{{ event.get_event_type_display }}</span>
+                <button class="btn-view-details" onclick="toggleEventDetail('detail-{{ event.id }}', this)">▼ View Details</button>
+            </div>
+
+            <div class="event-detail-panel" id="detail-{{ event.id }}">
+                <div class="detail-header">
+                    <div>
+                        <div class="detail-title">{{ event.title }}</div>
+                        <div class="detail-meta">{{ event.date|date:"d F Y" }} &nbsp;•&nbsp; {{ event.get_event_type_display }} &nbsp;•&nbsp; {{ event.venue }}</div>
+                    </div>
+                    <button class="close-detail-btn" onclick="toggleEventDetail('detail-{{ event.id }}', this)">▲ Close</button>
+                </div>
+                <hr class="detail-divider">
+
+                {% if event.registrations or event.attendees or event.teams_shortlisted or event.winning_teams %}
+                <div class="stats-row">
+                    {% if event.registrations %}
+                    <div class="stat-box">
+                        <div class="stat-number">{{ event.registrations }}+</div>
+                        <div class="stat-label">Registrations</div>
+                    </div>
+                    {% endif %}
+                    {% if event.attendees %}
+                    <div class="stat-box">
+                        <div class="stat-number">{{ event.attendees }}</div>
+                        <div class="stat-label">Students Attended</div>
+                    </div>
+                    {% endif %}
+                    {% if event.teams_shortlisted %}
+                    <div class="stat-box">
+                        <div class="stat-number">{{ event.teams_shortlisted }}</div>
+                        <div class="stat-label">Teams Shortlisted</div>
+                    </div>
+                    {% endif %}
+                    {% if event.winning_teams %}
+                    <div class="stat-box">
+                        <div class="stat-number">{{ event.winning_teams }}</div>
+                        <div class="stat-label">Winning Teams</div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if event.description %}
+                <p class="detail-desc">{{ event.description }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <div class="empty-state">
+                <p style="font-size: 1.1rem; margin: 0;">No past events recorded yet.</p>
+            </div>
+            {% endif %}
+
+        <!-- FAQ SECTION -->
+        <div class="mt-5">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="section-divider"></div>
+
+            <div class="faq-container">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How can I register for upcoming events?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Contact us at <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a> or watch this page for
+                            registration links for each upcoming event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are events open to students from other colleges?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, most events are open to all students. Check individual event details for eligibility
+                            criteria.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Will participation certificates be provided?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, certificates are provided for all registered participants upon successful completion of
+                            the event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How can my institution collaborate for an event?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Reach out to us at <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a> with your proposal and
+                            we will get back to you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are the events free to attend?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most events are free to attend. Specific registration fees, if any, will be mentioned in the
+                            event announcement.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How will I be notified about upcoming events?
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Check this page regularly for updates. You can also contact us at <a
+                                href="mailto:coeai@nitt.edu">coeai@nitt.edu</a> to be added to our mailing list.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-fluid px-4">
+            <div class="row">
+                <div class="col-12 col-lg-4 mb-4">
+                    <h5>CAIM — NIT Tiruchirappalli</h5>
+                    <p>Centre for Artificial Intelligence<br>and Machine Learning<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620015<br>
+                        Tamil Nadu, India</p>
+                </div>
+                <div class="col-12 col-lg-4 mb-4">
+                    <h5>Contact</h5>
+                    <p>
+                        TATA Centre for Artificial Intelligence and Machine Learning<br>
+                        Coordinator<br>
+                        National Institute of Technology<br>
+                        Tiruchirappalli — 620 015<br>
+                        Tamil Nadu, India.<br><br>
+                        <strong>E-mail:</strong><br>
+                        <a href="mailto:coeai@nitt.edu">coeai@nitt.edu</a><br>
+                        <a href="mailto:coeaioffice@nitt.edu">coeaioffice@nitt.edu</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 TATA Centre for Artificial Intelligence and Machine Learning, NIT Tiruchirappalli.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleEventDetail(id, btn) {
+            const panel = document.getElementById(id);
+            const isOpen = panel.classList.contains('show');
+
+            document.querySelectorAll('.event-detail-panel').forEach(p => p.classList.remove('show'));
+            document.querySelectorAll('.btn-view-details').forEach(b => {
+                b.textContent = '▼ View Details';
+                b.classList.remove('active');
+            });
+
+            if (!isOpen) {
+                panel.classList.add('show');
+                btn.textContent = '▲ Close Details';
+                btn.classList.add('active');
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function toggleFAQ(btn) {
+            const answer = btn.nextElementSibling;
+            const allQuestions = document.querySelectorAll('.faq-question');
+            const allAnswers = document.querySelectorAll('.faq-answer');
+
+            allQuestions.forEach(q => {
+                if (q !== btn) {
+                    q.classList.remove('active');
+                    q.querySelector('.faq-arrow').textContent = '▼';
+                }
+            });
+            allAnswers.forEach(a => {
+                if (a !== answer) {
+                    a.classList.remove('show');
+                }
+            });
+
+            btn.classList.toggle('active');
+            answer.classList.toggle('show');
+            btn.querySelector('.faq-arrow').textContent = btn.classList.contains('active') ? '▲' : '▼';
+        }
+    </script>
+</body>
+
+</html>
