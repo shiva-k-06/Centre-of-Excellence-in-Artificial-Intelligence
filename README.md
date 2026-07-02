@@ -11,7 +11,7 @@ This repository contains the Django-based website for the **Centre of Excellence
 ## Tech Stack
 
 - **Backend:** Django 6.0.5 (Python)
-- **Database:** SQLite (see [Deployment Notes](#deployment-notes-for-it-team) for switching to MySQL)
+- **Database:** SQLite 
 - **Frontend:** Bootstrap 5.3, Open Sans font
 - **Brand colors:** Navy `#012951`, Teal `#007b6e`
 
@@ -158,7 +158,7 @@ ai_centre/
 
 ---
 
-## Deployment Notes (For IT Team)
+## Deployment Notes 
 
 The following settings in `settings.py` are currently configured for **local development** and must be changed before going live on the actual domain:
 
