@@ -65,7 +65,7 @@ Because of this, a superuser account already exists in the database:
    ```bash
    python manage.py createsuperuser
    ```
-2. Log in to `/admin/` (or `/caim/admin/` — confirm your actual admin URL) with your **new** account.
+2. Log in to `/admin/`  with your **new** account.
 3. Once confirmed working, **delete the `shivv06` account** from the admin panel (Users section).
 
 Do not rely on the `shivv06` account for anything beyond initial setup — it should be removed before this site is used for real / handed off further.
@@ -113,22 +113,22 @@ If ongoing editing without touching code is important going forward, this would 
 ## Project Structure (Brief Overview)
 
 ```
-ai_centre/
+Centre-of-Excellence-in-Artificial-Intelligence/
 ├── manage.py
 ├── requirements.txt
 ├── db.sqlite3
-├── <project_settings_folder>/
+├── core/
 │   ├── settings.py
 │   ├── urls.py
-├── <app_folder>/
+├── website/
 │   ├── models.py         # ContactMessage, Event, Project, Publication,
 │   │                      # BodhiShalaPublication, BodhiShalaContactMessage
 │   ├── views.py
 │   ├── admin.py           # Custom admin classes for all models
-│   ├── templates/
-│   │   ├── people.html
-│   │   ├── bodhishala_people.html
-│   │   └── ... (other page templates)
+├── templates/
+│   ├── people.html
+│   ├── bodhishala_people.html
+│   └── ... (other page templates)
 ├── static/
 ```
 
