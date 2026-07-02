@@ -21,8 +21,8 @@ This repository contains the Django-based website for the **Centre of Excellence
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
-   cd ai_centre
+   git clone https://github.com/shiva-k-06/Centre-of-Excellence-in-Artificial-Intelligence.git
+   cd Centre-of-Excellence-in-Artificial-Intelligence
    ```
 
 2. **Create and activate a virtual environment** (recommended)
