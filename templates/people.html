@@ -33,7 +33,10 @@
             gap: 20px;
         }
 
-        .top-header .header-text { display: flex; flex-direction: column; }
+        .top-header .header-text {
+            display: flex;
+            flex-direction: column;
+        }
 
         .top-header .centre-title {
             color: var(--nitt-white);
@@ -51,14 +54,17 @@
 
         .main-navbar {
             background-color: var(--nitt-navy);
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .main-navbar .navbar-nav { width: 100%; justify-content: flex-start; }
+        .main-navbar .navbar-nav {
+            width: 100%;
+            justify-content: flex-start;
+        }
 
         .main-navbar .nav-link {
             color: var(--nitt-white) !important;
@@ -66,11 +72,17 @@
             font-size: 1.15rem;
         }
 
-        .main-navbar .nav-link:hover { background-color: var(--nitt-teal); color: var(--nitt-white) !important; }
-        .main-navbar .nav-link.active { background-color: var(--nitt-teal); }
+        .main-navbar .nav-link:hover {
+            background-color: var(--nitt-teal);
+            color: var(--nitt-white) !important;
+        }
+
+        .main-navbar .nav-link.active {
+            background-color: var(--nitt-teal);
+        }
 
         .main-navbar .navbar-toggler {
-            border-color: rgba(255,255,255,0.5);
+            border-color: rgba(255, 255, 255, 0.5);
             margin: 8px 16px;
         }
 
@@ -82,7 +94,9 @@
             border-bottom: 3px solid var(--nitt-teal);
         }
 
-        .page-banner h1 { color: var(--nitt-navy); }
+        .page-banner h1 {
+            color: var(--nitt-navy);
+        }
 
         .page-banner p {
             color: #555555;
@@ -90,7 +104,9 @@
             font-size: 1rem;
         }
 
-        .people-section { padding: 50px 0; }
+        .people-section {
+            padding: 50px 0;
+        }
 
         .accordion-button {
             background-color: var(--nitt-navy) !important;
@@ -106,14 +122,16 @@
             box-shadow: none;
         }
 
-        .accordion-button::after { filter: invert(1); }
+        .accordion-button::after {
+            filter: invert(1);
+        }
 
         .accordion-item {
             border: none;
             margin-bottom: 10px;
             border-radius: 8px !important;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .accordion-body {
@@ -134,7 +152,7 @@
 
         .person-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .avatar-circle {
@@ -190,26 +208,56 @@
             margin-bottom: 6px;
         }
 
-        footer a:hover { color: var(--nitt-teal); }
+        footer a:hover {
+            color: var(--nitt-teal);
+        }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 30px;
             padding-top: 15px;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             text-align: center;
         }
 
         @media (max-width: 576px) {
-            .top-header { flex-direction: column; text-align: center; padding: 20px 16px; }
-            .top-header .centre-title { font-size: 1.5rem; }
-            .top-header .institute-title { font-size: 1rem; }
-            .person-card { padding: 15px 10px; }
-            .avatar-circle { width: 45px; height: 45px; font-size: 0.9rem; margin-bottom: 10px; }
-            .person-card h5 { font-size: 0.82rem; }
-            .person-card .designation { font-size: 0.75rem; }
-            .person-card .department { font-size: 0.72rem; }
+            .top-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .top-header .centre-title {
+                font-size: 1.5rem;
+            }
+
+            .top-header .institute-title {
+                font-size: 1rem;
+            }
+
+            .person-card {
+                padding: 15px 10px;
+            }
+
+            .avatar-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
+            .person-card h5 {
+                font-size: 0.82rem;
+            }
+
+            .person-card .designation {
+                font-size: 0.75rem;
+            }
+
+            .person-card .department {
+                font-size: 0.72rem;
+            }
         }
     </style>
 </head>
@@ -241,7 +289,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}" style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}"
+                            style="color: #4dd0c4 !important; font-weight: 700;">Back to CoE-AI</a></li>
                 </ul>
             </div>
         </div>
@@ -311,34 +360,30 @@
                             <div class="row g-4">
                                 <div class="col-6 col-md-6 col-lg-4">
                                     <div class="person-card">
-                                        <div class="avatar-circle">RB</div>
-                                        <h5>Mr. Raja Bhowmick</h5>
-                                        <div class="designation">Representative</div>
-                                        <div class="department">TCS Foundation</div>
+                                        <div class="avatar-circle">CM</div>
+                                        <h5>Mr. Chandra Mohan Malladi</h5>
+                                        <div class="department">TCS</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-6 col-lg-4">
                                     <div class="person-card">
-                                        <div class="avatar-circle">MM</div>
-                                        <h5>Mr. M. Murali</h5>
-                                        <div class="designation">Technology Consultant</div>
-                                        <div class="department">Hexaware</div>
+                                        <div class="avatar-circle">SG</div>
+                                        <h5>Mr. Sankar Ganesh Natarajan</h5>
+                                        <div class="department">TCS</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-6 col-lg-4">
                                     <div class="person-card">
-                                        <div class="avatar-circle">RR</div>
-                                        <h5>Mr. Raja Renganathan</h5>
-                                        <div class="designation">Alumni</div>
-                                        <div class="department">NIT Tiruchirappalli</div>
+                                        <div class="avatar-circle">MA</div>
+                                        <h5>Mr. Madhav Ayyagari</h5>
+                                        <div class="department">TCS</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-6 col-lg-4">
                                     <div class="person-card">
-                                        <div class="avatar-circle">LG</div>
-                                        <h5>Mr. Lakshmi Gudapakkam</h5>
-                                        <div class="designation">CEO</div>
-                                        <div class="department">Annalaise AI, USA</div>
+                                        <div class="avatar-circle">BP</div>
+                                        <h5>Mr. Bhanu Prasad</h5>
+                                        <div class="department">TCS</div>
                                     </div>
                                 </div>
                             </div>
