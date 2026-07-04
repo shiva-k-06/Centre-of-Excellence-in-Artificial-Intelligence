@@ -11,7 +11,7 @@ This repository contains the Django-based website for the **Centre of Excellence
 ## Tech Stack
 
 - **Backend:** Django 6.0.5 (Python)
-- **Database:** SQLite (see [Deployment Notes](#deployment-notes-for-it-team) for switching to MySQL)
+- **Database:** SQLite 
 - **Frontend:** Bootstrap 5.3, Open Sans font
 - **Brand colors:** Navy `#012951`, Teal `#007b6e`
 
@@ -21,8 +21,8 @@ This repository contains the Django-based website for the **Centre of Excellence
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
-   cd ai_centre
+   git clone https://github.com/shiva-k-06/Centre-of-Excellence-in-Artificial-Intelligence.git
+   cd Centre-of-Excellence-in-Artificial-Intelligence
    ```
 
 2. **Create and activate a virtual environment** (recommended)
@@ -65,7 +65,7 @@ Because of this, a superuser account already exists in the database:
    ```bash
    python manage.py createsuperuser
    ```
-2. Log in to `/admin/` (or `/caim/admin/` — confirm your actual admin URL) with your **new** account.
+2. Log in to `/admin/`  with your **new** account.
 3. Once confirmed working, **delete the `shivv06` account** from the admin panel (Users section).
 
 Do not rely on the `shivv06` account for anything beyond initial setup — it should be removed before this site is used for real / handed off further.
@@ -113,22 +113,22 @@ If ongoing editing without touching code is important going forward, this would 
 ## Project Structure (Brief Overview)
 
 ```
-ai_centre/
+Centre-of-Excellence-in-Artificial-Intelligence/
 ├── manage.py
 ├── requirements.txt
 ├── db.sqlite3
-├── <project_settings_folder>/
+├── core/
 │   ├── settings.py
 │   ├── urls.py
-├── <app_folder>/
+├── website/
 │   ├── models.py         # ContactMessage, Event, Project, Publication,
 │   │                      # BodhiShalaPublication, BodhiShalaContactMessage
 │   ├── views.py
 │   ├── admin.py           # Custom admin classes for all models
-│   ├── templates/
-│   │   ├── people.html
-│   │   ├── bodhishala_people.html
-│   │   └── ... (other page templates)
+├── templates/
+│   ├── people.html
+│   ├── bodhishala_people.html
+│   └── ... (other page templates)
 ├── static/
 ```
 
@@ -158,7 +158,7 @@ ai_centre/
 
 ---
 
-## Deployment Notes (For IT Team)
+## Deployment Notes 
 
 The following settings in `settings.py` are currently configured for **local development** and must be changed before going live on the actual domain:
 
